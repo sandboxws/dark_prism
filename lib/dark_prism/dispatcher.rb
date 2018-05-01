@@ -1,7 +1,7 @@
 module DarkPrism
   class Dispatcher
     include Singleton
-    attr_reader :listeners, :subscribers
+    attr_reader :listeners
 
     def initialize
       @listeners = {}
