@@ -2,6 +2,8 @@
 
 Simple and straightforward event dispatching for ruby.
 
+[![Build Status](https://travis-ci.com/sandboxws/dark_prism.svg?branch=master)](https://travis-ci.com/sandboxws/dark_prism)
+
 ## Installation
 
 Add this line to your application's Gemfile:
