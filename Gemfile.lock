@@ -18,6 +18,7 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     diff-lcs (1.3)
+    docile (1.1.5)
     faraday (0.15.0)
       multipart-post (>= 1.2, < 3)
     google-cloud-core (1.2.0)
@@ -59,6 +60,7 @@ GEM
       grpc (~> 1.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    json (1.8.6)
     jwt (2.1.0)
     little-plugger (1.1.4)
     logging (2.2.2)
@@ -94,6 +96,11 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    simplecov (0.15.1)
+      docile (~> 1.1.0)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -107,6 +114,7 @@ DEPENDENCIES
   pry (~> 0.11.3)
   rake (~> 10.0)
   rspec (~> 3.0)
+  simplecov
 
 BUNDLED WITH
    1.16.0
