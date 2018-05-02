@@ -1,8 +1,7 @@
-require "dark_prism/version"
+require 'dark_prism/version'
 require 'singleton'
-require "dark_prism/subscriber"
-require "dark_prism/dispatch"
-require "dark_prism/dispatcher"
+require 'dark_prism/dispatch'
+require 'dark_prism/dispatcher'
 
 module DarkPrism
   class Config
