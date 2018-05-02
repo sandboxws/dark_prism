@@ -4,10 +4,12 @@ module DarkPrism
     attr_reader :listeners
 
     def initialize
-      @listeners = {}
+      @listeners = {}.with_indifferent_access
     end
 
     def dispatch(event_name, event)
+      return unless @listeners.include?(event_name)
+
       @listeners.dig(event_name).each do |listener|
         listener.send(event_name, event)
       end
