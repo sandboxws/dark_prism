@@ -1,7 +1,9 @@
-require 'dark_prism/version'
+require 'active_support'
+require 'active_support/core_ext'
 require 'singleton'
 require 'dark_prism/dispatch'
 require 'dark_prism/dispatcher'
+require 'dark_prism/version'
 
 module DarkPrism
   class Config
