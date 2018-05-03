@@ -1,7 +1,7 @@
 require 'spec_helper.rb'
 
 RSpec.describe DarkPrism do
-  it "has a version number" do
+  it 'has a version number' do
     expect(DarkPrism::VERSION).not_to be nil
   end
 

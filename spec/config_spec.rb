@@ -13,10 +13,6 @@ RSpec.describe DarkPrism::Config do
   end
 
   describe '.configure' do
-    # it 'should raise an exception if a block is not given' do
-    #   expect(DarkPrism::Config.configure()).to raise_exception(DarkPrism::NoBlockGivenException)
-    # end
-
     it 'should invoke instance methods when passed a block' do
       expect(DarkPrism::Config.instance).to receive(:register_listeners).with(SampleListeners).once
       DarkPrism::Config.configure do |config|
