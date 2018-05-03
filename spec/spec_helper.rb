@@ -1,4 +1,14 @@
-# require 'rubygems'
+require 'simplecov'
+require 'simplecov-console'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new [
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::Console,
+]
+SimpleCov.start do
+  add_filter /spec/
+end
+
 require "bundler/setup"
 Bundler.setup
 
@@ -6,11 +16,6 @@ require 'pry'
 require 'support/common'
 require 'active_support'
 require "dark_prism"
-require 'simplecov'
-require 'simplecov-console'
-
-SimpleCov.formatter = SimpleCov::Formatter::Console
-SimpleCov.start
 
 
 RSpec.configure do |config|

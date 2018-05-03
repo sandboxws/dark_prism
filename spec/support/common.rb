@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 class SampleListeners
   def self.listeners
     {

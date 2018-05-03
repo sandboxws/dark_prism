@@ -6,11 +6,11 @@ RSpec.describe DarkPrism do
   end
 
   describe '.configure' do
-    it 'should return an instance of DarkPrism::Config' do
+    it 'should return an instance of DarkPrism::Config::MainConfig' do
       instance = DarkPrism.configure do |config|
         config.register_listeners(SampleListeners)
       end
-      expect(instance).to be_a(DarkPrism::Config)
+      expect(instance).to be_a(DarkPrism::Config::MainConfig)
     end
   end
 end

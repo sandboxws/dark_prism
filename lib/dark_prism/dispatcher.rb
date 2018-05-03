@@ -15,18 +15,19 @@ module DarkPrism
       end
     end
 
+    def dispatch_pubsub(topic_name, message, attributes = nil)
+      topic = DarkPrism::Config::GcloudConfig.instance.pubsub.topic topic_name
+      topic.publish message, attributes
+    end
+
     def add_listener(event_name, listener)
       unless listener.respond_to?(event_name)
         raise ArgumentError, "Listener cannot respond to #{event_name} event"
       end
 
-      unless listeners.dig(event_name)
-        listeners[event_name] = []
-      end
+      listeners[event_name] = [] unless listeners.dig(event_name)
 
-      unless include_listener?(event_name, listener)
-        listeners[event_name] << listener
-      end
+      listeners[event_name] << listener unless include_listener?(event_name, listener)
     end
 
     def add_listeners(event_name, listeners)
