@@ -5,6 +5,7 @@ Simple and straightforward event dispatching for ruby.
 [![Build Status](https://travis-ci.com/sandboxws/dark_prism.svg?branch=master)](https://travis-ci.com/sandboxws/dark_prism)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5660cb7cfd7c184bf096/maintainability)](https://codeclimate.com/github/sandboxws/dark_prism/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5660cb7cfd7c184bf096/test_coverage)](https://codeclimate.com/github/sandboxws/dark_prism/test_coverage)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
 
