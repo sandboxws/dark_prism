@@ -7,10 +7,10 @@ require 'support/common'
 require 'active_support'
 require "dark_prism"
 require 'simplecov'
+require 'simplecov-console'
 
-SimpleCov.start do
-  add_filter '/spec/'
-end
+SimpleCov.formatter = SimpleCov::Formatter::Console
+SimpleCov.start
 
 
 RSpec.configure do |config|
