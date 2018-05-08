@@ -3,18 +3,7 @@ module DarkPrism
     class GcloudConfig
       include Singleton
       attr_reader :pubsub
-      attr_writer :project_id, :credentials
-
-      def initialize
-        prepare_pubsub
-      end
-
-      def prepare_pubsub
-        @pubsub = Google::Cloud::Pubsub.new(
-          project: project_id,
-          keyfile: credentials
-        )
-      end
+      attr_accessor :project_id, :credentials
 
       def self.configure(&block)
         raise NoBlockGivenException unless block_given?
@@ -22,8 +11,20 @@ module DarkPrism
         instance = GcloudConfig.instance
         instance.instance_eval(&block)
 
-        puts instance
         instance
+      end
+
+      def initialize
+        prepare_pubsub
+      end
+
+      def prepare_pubsub
+        return unless valid?
+
+        @pubsub = Google::Cloud::Pubsub.new(
+          project: project_id,
+          keyfile: credentials
+        )
       end
 
       def valid?

@@ -119,7 +119,8 @@ DEPENDENCIES
   dark_prism!
   pry (~> 0.11.3)
   rake (~> 10.0)
-  rspec (~> 3.0)
+  rspec
+  rspec-mocks
   simplecov
   simplecov-console
 
