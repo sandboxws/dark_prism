@@ -8,7 +8,7 @@ rvm:
 env:
   global:
     - CI="travis"
-    - CC_TEST_REPORTER_ID=f49d2d642ef584e2851eb50ecc7d8f684b33c3f3d3c55364b6e6d796091deb3b
+    - CC_TEST_REPORTER_ID=f6d34116730ca0ce24f577280918a14b1ac3168bf6d01b51eebba93a824f93f1
 before_install: gem install bundler -v 1.16.0
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
