@@ -12,6 +12,7 @@ module DarkPrism
 
       def self.configure(&block)
         raise NoBlockGivenException unless block_given?
+
         instance = MainConfig.instance
         instance.instance_eval(&block)
 

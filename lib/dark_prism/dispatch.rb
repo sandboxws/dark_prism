@@ -3,8 +3,16 @@ module DarkPrism
     extend ActiveSupport::Concern
 
     included do
-      def dispatch_event(event_name, event)
-        DarkPrism::Dispatcher.instance.dispatch(event_name, event)
+      def dispatch_event(event_name, obj)
+        DarkPrism::Dispatcher.instance.dispatch(event_name, obj)
+      end
+
+      def dispatch_pubsub(topic_name, message, attributes = nil)
+        DarkPrism::Dispatcher.instance.dispatch_pubsub(
+          topic_name,
+          message,
+          attributes
+        )
       end
     end
   end

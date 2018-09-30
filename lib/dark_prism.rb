@@ -9,8 +9,9 @@ require 'dark_prism/version'
 module DarkPrism
   def self.configure(&block)
     raise NoBlockGivenException unless block_given?
+
     Config::MainConfig.configure(&block)
   end
 
-  class NoBlockGivenException < Exception; end
+  class NoBlockGivenException < RuntimeError; end
 end

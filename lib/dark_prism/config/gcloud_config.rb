@@ -10,12 +10,9 @@ module DarkPrism
 
         instance = GcloudConfig.instance
         instance.instance_eval(&block)
+        instance.prepare_pubsub
 
         instance
-      end
-
-      def initialize
-        prepare_pubsub
       end
 
       def prepare_pubsub
