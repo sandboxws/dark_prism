@@ -15,7 +15,6 @@ Bundler.setup
 require 'pry'
 require 'support/common'
 require 'active_support'
-require 'google/cloud/pubsub'
 require 'dark_prism'
 
 RSpec.configure do |config|

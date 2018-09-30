@@ -1,3 +1,5 @@
+require 'google/cloud/pubsub'
+
 module DarkPrism
   module Config
     class GcloudConfig
