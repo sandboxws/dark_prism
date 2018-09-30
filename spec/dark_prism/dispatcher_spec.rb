@@ -39,7 +39,7 @@ RSpec.describe DarkPrism::Dispatcher do
       topic = instance_double(Google::Cloud::Pubsub::Topic)
       allow(DarkPrism::Config::GcloudConfig.instance.pubsub).to receive(:topic).and_return(nil)
 
-      expect { dispatcher.dispatch_pubsub(:some_event, @obj) }.to raise_error
+      expect { dispatcher.dispatch_pubsub(:some_event, @obj) }.to raise_error(ArgumentError)
     end
 
     it "publishes a new pubsub message" do
@@ -50,6 +50,33 @@ RSpec.describe DarkPrism::Dispatcher do
 
       expect(@obj).to receive(:to_pubsub).and_return({ foo: :bar }.to_json)
       expect(dispatcher.dispatch_pubsub(:some_event, @obj)).to be(msg)
+    end
+  end
+
+  describe "#dispatch_pubsub_async" do
+    before do
+      @obj = SomeObject.new
+    end
+
+    it "returns nil if the event object does not respond to to_pubsub" do
+      expect(dispatcher.dispatch_pubsub_async(:some_event, "some string")).to be_nil
+    end
+
+    it "raises an exception if the topic is not found" do
+      topic = instance_double(Google::Cloud::Pubsub::Topic)
+      allow(DarkPrism::Config::GcloudConfig.instance.pubsub).to receive(:topic).and_return(nil)
+
+      expect { dispatcher.dispatch_pubsub_async(:some_event, @obj) }.to raise_error(ArgumentError)
+    end
+
+    it "publishes a new pubsub message" do
+      topic = instance_double(Google::Cloud::Pubsub::Topic)
+      msg = instance_double(Google::Cloud::Pubsub::Message)
+      allow(DarkPrism::Config::GcloudConfig.instance.pubsub).to receive(:topic).and_return(topic)
+      allow(topic).to receive(:publish_async).and_return(msg)
+
+      expect(@obj).to receive(:to_pubsub).and_return({ foo: :bar }.to_json)
+      expect(dispatcher.dispatch_pubsub_async(:some_event, @obj)).to be(msg)
     end
   end
 

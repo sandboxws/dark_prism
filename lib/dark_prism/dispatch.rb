@@ -14,6 +14,14 @@ module DarkPrism
           attributes
         )
       end
+
+      def dispatch_pubsub_async(topic_name, message, attributes = nil)
+        DarkPrism::Dispatcher.instance.dispatch_pubsub_async(
+          topic_name,
+          message,
+          attributes
+        )
+      end
     end
   end
 end

@@ -22,4 +22,12 @@ RSpec.describe DarkPrism::Dispatch do
       instance.dispatch_pubsub('my_event', instance)
     end
   end
+
+  describe '#dispatch_pubsub_async' do
+    it 'invokes dispatch_pubsub_async method on the Dispatcher singleton' do
+      dispatcher_instance = DarkPrism::Dispatcher.instance
+      expect(dispatcher_instance).to receive(:dispatch_pubsub_async).once
+      instance.dispatch_pubsub_async('my_event', instance)
+    end
+  end
 end

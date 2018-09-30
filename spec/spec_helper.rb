@@ -59,3 +59,5 @@ RSpec::Matchers.define :have_attr_writer do |attribute|
     "have attr_writer :#{attribute}"
   end
 end
+
+RSpec::Mocks.configuration.allow_message_expectations_on_nil = true
