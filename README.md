@@ -25,11 +25,84 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuration
+
+Here is an example of a DarkPrism configuration file that can be placed under Rails' `initializers` directory.
+
+```ruby
+DarkPrism.configure do |config|
+  config.register_listeners(Listeners::Base)
+  config.gcloud do |gcloud_config|
+    gcloud_config.project_id = gcloud_project_id
+    gcloud_config.credentials = credentials
+  end
+end
+```
+
+`Listeners::Base` class example:
+```ruby
+module Listeners
+  class Base
+    def self.listeners
+      {
+        user_created: [Listeners::Users::Created.new]
+      }.freeze
+    end
+  end
+end
+
+module Listeners
+  module Users
+    class Created
+      include DarkPrism::Dispatch
+
+      def user_created(user)
+        dispatch_pubsub(:user_created, user)
+      end
+    end
+  end
+end
+
+```
+
+Once you've configured DarkPrism, dispatching events is quiet easy. First you need to include the `Dispatch` module as follows:
+
+```ruby
+include DarkPrism::Dispatch
+```
+
+Once it's included, you can dispatch events through one the following three methods:
+
+### dispatch_event(event_name, obj)
+
+This method dispatches an object asynchronously to all available listeners to the event.
+
+Example:
+```ruby
+dispatch_event(:my_event, some_object)
+```
+
+### dispatch_pubsub(topic_name, message, attributes = nil)
+
+This method dispatches an object synchronously to a google pubsub topic.
+
+Example:
+```ruby
+dispatch_pubsub(:my_event, some_object, { foo: :bar })
+```
+
+### dispatch_pubsub_async(topic_name, message, attributes = nil)
+
+This method dispatches an object asynchronously to a google pubsub topic.
+
+Example:
+```ruby
+dispatch_pubsub_async(:my_event, some_object, { foo: :bar })
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bundle install` to install dependencies. Then, run `rake spec` to run the tests.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
